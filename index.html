@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<title>Bites Barge Home</title>
+<style>
+<!-- /*page header rules*/ -->
+.header {
+  	height: 120vh;
+  	background-image:
+	url("images/cover.png");
+  	background-size: cover;
+  	background-position: top;
+  	position: relative;
+}
+<!-- /*end page header rules*/ -->
+
+<!-- /*top nav rules*/ -->
+.topnav{
+    list-style:none;
+    margin:20px;
+    padding:0;
+    text-align:center;
+	overflow: hidden;
+	background-color: #fff;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+}
+.topnav li{
+    display:inline;
+}
+.topnav a{
+    display:inline-block;
+    padding:10px;
+	color: #666;;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+}
+ul.topnav li a:hover:not(.active) {color: #00bfff;;}
+
+ul.topnav li a.active {background-color: #00bfff;;}
+
+ul.topnav li.right {float: right;}
+
+@media only screen and (min-width: 601px) {
+#burger, #quit, #links {
+	display: none;
+	}
+}
+<!-- /*end top nav rules*/ -->
+
+<!-- /*small screen nav rules*/ -->
+@media only screen and (max-width: 600px) {
+.topnav {
+	display: none;
+	}
+.header {
+	height: 30vh;
+	}
+
+#burger{
+  position: fixed;
+  right: 0;
+  top: 0;
+  color: white;
+  background: linear-gradient(45deg, #9682C8 10%, #05BCC9);;
+  opacity: 50%;
+  font-size: 32px;
+  padding: 16px 16px 32px 32px;
+  border-radius: 0% 0% 0% 100%;
+  transition: 1s;
+  cursor: pointer;
+}
+
+#quit{
+  position: fixed;
+  top: 0;
+  color: white;
+  font-size: 32px;
+  padding: 16px;
+  display: none;
+  cursor: pointer;
+}
+
+#links{
+  display: none;
+  flex-direction: column;
+  width: 100vw;
+  height: 25vh;
+  padding: 25vh 0;
+  justify-content: space-around;
+}
+
+#links a{
+  text-align: center;
+  text-decoration: none;
+  color: #00bfff;
+  font-size: 2em;
+  font-family: 'Arial, Helvetica, sans-serif;';
+  z-index: 10;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background: linear-gradient(45deg, #9682C8 10%, #05BCC9);
+   color: white;
+   text-align: center;
+   font-size: 6px;
+}
+}
+<!-- /*end small screen nav rules*/ -->
+
+<!-- /*button rules*/ -->
+.btn:link,
+.btn:visited {
+  	text-transform: uppercase;
+  	text-decoration: none;
+  	padding: 10px 20px;
+  	display: inline-block;
+  	border-radius: 100px;
+  	transition: all .2s;
+  	position: relative;
+}
+
+.btn:hover {
+  	transform: translateY(-3px);
+  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  	transform: translateY(-1px);
+  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  	background-color: #fff;
+  	color: #777;
+	font-size: 14px;
+}
+<!-- /*end button rules*/ -->
+
+<!-- /*body rules*/ -->
+body::-webkit-scrollbar { /* This code is to hide the scroll bar. */
+  display: none;
+}
+<!-- /*end body rules*/ -->
+
+<!-- /*text header rules*/ -->
+h2 {
+	text-align: center;
+	font-size: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	}
+
+h3 {
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 19px;
+	}
+<!-- /*end text header rules*/ -->
+
+<!-- /*text rules*/ -->
+.text-box {
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	text-align: center;
+}
+
+p {
+	position: relative;
+	padding: 20px 20px 20px 65px;
+	background: orange;
+	border-radius: 10px;
+	margin-bottom: 35px;
+	color: white;
+	width: 50%;
+  }
+
+  p:before{
+  content: "\201C"; /*Unicode for Left Double Quote*/
+  font-family: Georgia, serif;
+  font-size: 60px;
+  font-weight: bold;
+  position: absolute;
+  left: 20px;
+  top: 5px;
+}
+
+p:after{
+  content: ' ';
+  border: 10px solid;
+  border-color: orange transparent transparent orange;
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+a {
+	color: #ef7b0e
+	}
+<!-- /*end page text rules*/ -->
+
+<!-- /*map rules*/ -->
+#map {
+        height: 430px;
+        width: 60%;
+        margin: auto;
+        padding: 1px;
+		position: relative;
+		top: 0;
+		bottom: 0;
+      }
+      @media only screen and (min-width: 431px) and (max-width: 960px) {
+         #map {
+         height: 620px;
+         width: 750px;
+         margin: 0px;
+         padding: 1px;
+		 right: 11px
+        }
+       }
+      @media only screen and (max-width: 430px) {
+         #map {
+          height: 430px;
+          width: 350px;
+          margin:10px;
+          padding: 1px;
+		  right: 11px;
+        }
+	}
+
+	.box-9 {
+  border: 5px inset orange;
+}
+<!-- /*end map rules*/ -->
+
+<!-- /*review rules*/ -->
+.wrapper{
+  margin-bottom: 50px;
+  width: 50%;
+}
+.wrapper img{
+  float: left;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+.wrapper h3{
+  padding: 15px 0 0 0;
+  color: orange;
+}
+.wrapper small{
+  display: block;
+  color: #999;
+  margin-top: -10px;
+}
+.wrapper ul{
+  list-style: none;
+}
+.wrapper ul li{
+  display: inline;
+  font-size: 1.3em;
+}
+.wrapper ul li:nth-child(-n+4){
+  color: orange;
+}
+<!-- /*end review rules*/ -->
+
+<!-- /*footer rules*/ -->
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #0640A0;
+   color: white;
+   text-align: center;
+}
+<!-- /*end footer rules*/ -->
+</style>
+<script>
+function burger(){
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('links');
+  var quit = document.getElementById('quit');
+  burger.style.padding = '16px 16px 200vw 200vw';
+  links.style.display = 'flex';
+  quit.style.display = 'inline';
+}
+
+function quit(){
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('links');
+  var quit = document.getElementById('quit');
+  burger.style.padding = '16px 16px 32px 32px';
+  links.style.display = 'none';
+  quit.style.display = 'none';
+}
+</script>
+</head>
+<body>
+<!-- /*the mobile nav is inside of the header class*/ -->
+<header class="header">
+<!-- /*The open/close mobile nav icons*/ -->
+<i id="burger" class="material-icons" onclick="burger()">menu</i>
+<i id="quit" class="material-icons" onclick="quit()">clear</i>
+<!-- /*The mobile nav links*/ -->
+<div id="links">
+  <a href="index.html" class="btn btn-white btn-animated">Home</a>
+  <a href="shop.html" class="btn btn-white btn-animated">Shop</a>
+  <a href="location.html" class="btn btn-white btn-animated">Location</a>
+  <a href="socialmedia.html" class="btn btn-white btn-animated">Social Media</a>
+  <a href="contact.html" class="btn btn-white btn-animated">Contact</a>
+ </div>
+</header>
+<!-- /*The full screen nav displayed under the header*/ -->
+<ul class="topnav">
+<!-- /*the navigation link displayed as the white animated button class*/ -->
+<li><a href="index.html" class="btn btn-white btn-animated">Home</a></li>
+<li><a href="shop.html" class="btn btn-white btn-animated">Shop</a></li>
+<li><a href="location.html" class="btn btn-white btn-animated">Location</a></li>
+<li><a href="socialmedia.html" class="btn btn-white btn-animated">Social Media</a></li>
+<li><a href="contact.html" class="btn btn-white btn-animated">Contact Us</a></li>
+</ul>
+<br>
+<br>
+<div class="container">
+<h2>HOME</h2>
+<h3>
+Want a bite without the inconvenience of getting out of your boat? Try the Bites <br> Barge!
+We are here for your water and food needs while you are on Mille Lacs Lake!  <br>
+You can reach us at (000)-000-0000 or check out our menu to see what we are offering. <br>
+Then, place an order and check out. Location will provide our exact <br> coordinates.
+We will transfer your order once we see you. Yes, it is really as simple as that!</h3>
+<br>
+<br>
+<br>
+<h2>LOCATION</H2>
+<h3>Find us at the blue marker on the lake. You are located at the black marker. To find us you must allow location services.</h3>
+    <div id="map" class="box box-9"></div> <!--script starts here for geolocation map -->
+    <br>
+	<script>
+		var bbLat;
+		var bbLng;
+		var lng;
+		var lat;
+		var map;
+		var bbMarker;
+		var customerMarker;
+		var uuid;
+
+		if (window.localStorage != null) {
+			uuid = window.localStorage.getItem("uuid");
+			if (uuid == undefined) {
+				uuid = PubNub.generateUUID();
+				localStorage.setItem("uuid", uuid);
+			}
+		} else {
+			uuid = PubNub.generateUUID();
+		}
+
+		const pubnub = new PubNub({
+			publishKey: "pub-c-8b59d5aa-7e7d-4b67-baf3-29b9d589319b",
+			subscribeKey: "sub-c-86c889ac-3e36-11eb-9ec5-221b84410db5",
+			uuid: uuid
+		});
+
+		pubnub.subscribe({
+			channels: ['bitesbarge'],
+			withPresence: false
+		});
+
+		pubnub.addListener({
+			message: function(event) {
+				bbLng = event.message.content[0];
+				bbLat = event.message.content[1];
+				if (map) {
+					if (bbMarker) {
+						bbMarker.setLngLat([bbLng, bbLat]);
+					} else {
+						bbMarker = new mapboxgl.Marker().setLngLat([bbLng, bbLat]);
+						bbMarker.addTo(map);
+					}
+				}
+			}
+		});
+
+		if (navigator.geolocation) {
+			watchId = navigator.geolocation.watchPosition(
+				function(position) {
+					lng = position.coords["longitude"];
+					lat = position.coords["latitude"];
+
+					if (map == undefined) {
+						initMap();
+					}
+				},
+				function(error) {
+					var msg = "Unexpeced error occurred. Error = ";
+					if (error.code == error.TIMEOUT) {
+						msg += "TIMEOUT";
+					} else if (error.code == 1) {
+						msg += "PERMISSION_DENIED";
+					} else if (error.code == 2) {
+						msg += "POSITION_UNAVAILABLE";
+					}
+					msg += ", msg = " + error.message;
+					console.log(msg, error);
+				},
+				{
+					enableHighAccuracy: true
+				}
+			);
+		}
+
+		function getCustomerLocation() {
+				return [lng, lat];
+		}
+
+		function initMap() {
+			mapboxgl.accessToken = 'pk.eyJ1IjoidHJhY3liaG9mZm1hbiIsImEiOiJja2lvdnA0OWkwMGU2MnJsN2lwc2FqYmlyIn0.AxDR4xbLYvLWyHzmdFsixg';
+
+			if (!mapboxgl.supported()) {
+				alert('Your browser does not support Mapbox GL');
+			} else {
+				// Create a map in the div #map
+				map = new mapboxgl.Map({
+					container: 'map', // container id
+					style: 'mapbox://styles/mapbox/streets-v11', // style URL
+					// center: [lng, lat], // starting position [longitude, latitude]
+					center: [-93.6669049, 46.251198], // Center of Lake Mille Lacs
+					zoom: 9.5 // starting zoom
+				});
+
+				// Add zoom and rotation controls to the map.
+				map.addControl(new mapboxgl.NavigationControl());
+
+				customerMarker = new mapboxgl.Marker({color: '#000000', scale: 0.50}).setLngLat(getCustomerLocation()).addTo(map);
+
+                               publishLocation();
+
+				setInterval(publishLocation, 60000); // updates every minute aka 60000 seconds
+				setInterval(updateCustomerMarker, 60000); // updates every minute aka 60000 seconds
+			}
+		}
+
+		function publishLocation() {
+			pubnub.publish(
+				{
+					channel: "bitesbarge-customers",
+					message : {"sender": uuid, "ordered": false, "content": getCustomerLocation()}
+				},
+				function(status, response) {
+					if (status.error) {
+						console.error("Customer location publishing failed w/ status: ", status);
+					}
+				}
+			);
+		}
+
+		function updateCustomerMarker() {
+			if (customerMarker) {
+				customerMarker.setLngLat(getCustomerLocation());
+			}
+		}
+
+	</script>
+
+<br>
+</div>
+<br>
+<br>
+
+<h2>CUSTOMER REVIEWS</h2>
+<h3>See what our customers are saying</h3>
+<br>
+<center> <!-- div starts here for the customer reviews -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <p>
+        Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir.
+      </p>
+      <div class="wrapper">
+        <h3>John DOE</h3>
+        <small>Web Developer</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <p>
+        Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir.
+      </p>
+      <div class="wrapper">
+        <h3>John DOE</h3>
+        <small>Web Developer</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <p>
+        Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir.
+      </p>
+      <div class="wrapper">
+				<h3>John DOE</h3>
+        <small>Web Developer</small>
+      </div>
+    </div>
+  </div>
+<p>Want to leave your own review? Click the button below.</p>
+<div class="text-center">
+<a href="feedback.html" class="btn btn-white btn-animated" >Give Us Feedback</a>
+</div>
+</div>
+</center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="footer">
+		<h4>Copyright © 2021 | BitesBarge	&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Mille Lacs Lake, MN | Contact Us: <a href="tel:000-000-0000">(000)-000-0000</a> | <a href="mailto:support@bitesbarge.com">support@bitesbarge.com</a></h4>
+</div>
+</body>
+</html>

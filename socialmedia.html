@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<title>Bites Barge Social Media</title>
+<style>
+<!-- /*page header rules*/ -->
+.header {
+  	height: 70vh;
+  	background-image:
+	url("images/cover.png");
+  	background-size: cover;
+  	background-position: top;
+  	position: relative;
+}
+<!-- /*end page header rules*/ -->
+
+<!-- /*top nav rules*/ -->
+.topnav{
+    list-style:none;
+    margin:20px;
+    padding:0;
+    text-align:center;
+	overflow: hidden;
+	background-color: #fff;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+}
+.topnav li{
+    display:inline;
+}
+.topnav a{
+    display:inline-block;
+    padding:10px;
+	color: #666;;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+}
+ul.topnav li a:hover:not(.active) {color: #00bfff;;}
+
+ul.topnav li a.active {background-color: #00bfff;;}
+
+ul.topnav li.right {float: right;}
+
+@media only screen and (min-width: 601px) {
+#burger, #quit, #links {
+	display: none;
+	}
+}
+<!-- /*end top nav rules*/ -->
+
+<!-- /*small screen nav rules*/ -->
+@media only screen and (max-width: 600px) {
+.topnav {
+	display: none;
+	}
+.header {
+	height: 30vh;
+	}
+
+#burger{
+  position: fixed;
+  right: 0;
+  top: 0;
+  color: white;
+  background: linear-gradient(45deg, #9682C8 10%, #05BCC9);;
+  opacity: 50%;
+  font-size: 32px;
+  padding: 16px 16px 32px 32px;
+  border-radius: 0% 0% 0% 100%;
+  transition: 1s;
+  cursor: pointer;
+}
+
+#quit{
+  position: fixed;
+  top: 0;
+  color: white;
+  font-size: 32px;
+  padding: 16px;
+  display: none;
+  cursor: pointer;
+}
+
+#links{
+  display: none;
+  flex-direction: column;
+  width: 100vw;
+  height: 25vh;
+  padding: 25vh 0;
+  justify-content: space-around;
+}
+
+#links a{
+  text-align: center;
+  text-decoration: none;
+  color: #00bfff;
+  font-size: 2em;
+  font-family: 'Arial, Helvetica, sans-serif;';
+  z-index: 10;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background: linear-gradient(45deg, #9682C8 10%, #05BCC9);
+   color: white;
+   text-align: center;
+   font-size: 6px;
+}
+}
+<!-- /*end small screen nav rules*/ -->
+
+<!-- /*button rules*/ -->
+.btn:link,
+.btn:visited {
+  	text-transform: uppercase;
+  	text-decoration: none;
+  	padding: 10px 20px;
+  	display: inline-block;
+  	border-radius: 100px;
+  	transition: all .2s;
+  	position: relative;
+}
+
+.btn:hover {
+  	transform: translateY(-3px);
+  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  	transform: translateY(-1px);
+  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  	background-color: #fff;
+  	color: #777;
+	font-size: 14px;
+}
+<!-- /*end button rules*/ -->
+
+<!-- /*body rules*/ -->
+body::-webkit-scrollbar { /* This code is to hide the scroll bar. */
+  display: none;
+}
+
+.container {
+  padding-left: 13%;
+  padding-right: 13%;
+  text-align: center;
+}
+<!-- /*end body rules*/ -->
+
+<!-- /*text header rules*/ -->
+h2 {text-align: center;
+	font-size: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	}
+<!-- /*end text header rules*/ -->
+
+<!-- /*text rules*/ -->
+.text-box {
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	text-align: center;
+}
+
+p {
+	text-align: center;
+}
+
+a {
+	color: #ef7b0e
+	}
+<!-- /*end text rules*/ -->
+
+<!-- /*social media button rules*/ -->
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.fa:hover {
+	transform: translateY(-3px);
+  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	color: #00bfff;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+<!-- /*end social media button rules*/ -->
+
+<!-- /*footer rules*/ -->
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #0640A0;
+   color: white;
+   text-align: center;
+}
+<!-- /*end footer rules*/ -->
+
+</style>
+<script>
+function burger(){
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('links');
+  var quit = document.getElementById('quit');
+  burger.style.padding = '16px 16px 200vw 200vw';
+  links.style.display = 'flex';
+  quit.style.display = 'inline';
+}
+
+function quit(){
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('links');
+  var quit = document.getElementById('quit');
+  burger.style.padding = '16px 16px 32px 32px';
+  links.style.display = 'none';
+  quit.style.display = 'none';
+}
+</script>
+</head>
+<body>
+<!-- /*the mobile nav is inside of the header class*/ -->
+<header class="header">
+<!-- /*The open/close mobile nav icons*/ -->
+<i id="burger" class="material-icons" onclick="burger()">menu</i>
+<i id="quit" class="material-icons" onclick="quit()">clear</i>
+<!-- /*The mobile nav links*/ -->
+<div id="links">
+  <a href="index.html" class="btn btn-white btn-animated">Home</a>
+  <a href="shop.html" class="btn btn-white btn-animated">Shop</a>
+  <a href="location.html" class="btn btn-white btn-animated">Location</a>
+  <a href="socialmedia.html" class="btn btn-white btn-animated">Social Media</a>
+  <a href="contact.html" class="btn btn-white btn-animated">Contact</a>
+ </div>
+</header>
+<!-- /*The full screen nav displayed under the header*/ -->
+<ul class="topnav">
+<!-- /*the navigation link displayed as the white animated button class*/ -->
+<li><a href="index.html" class="btn btn-white btn-animated">Home</a></li>
+<li><a href="shop.html" class="btn btn-white btn-animated">Shop</a></li>
+<li><a href="location.html" class="btn btn-white btn-animated">Location</a></li>
+<li><a href="socialmedia.html" class="btn btn-white btn-animated">Social Media</a></li>
+<li><a href="contact.html" class="btn btn-white btn-animated">Contact Us</a></li>
+</ul>
+<br>
+<div class="solid">
+<h2>FIND US ON SOCIAL MEDIA!</h2>
+<p><!-- /*Social media links displayed by class icons*/ -->
+<a href="https://www.facebook.com/Testing-108277944671138/" class="fa fa-facebook"></a>
+<a href="https://www.instagram.com/bitesbargetest/" class="fa fa-instagram"></a>
+<a href="https://twitter.com/bitesbargetest1" class="fa fa-twitter"></a>
+</p>
+<div class="container">
+<a class="twitter-timeline" data-width="800" data-theme="light" href="https://twitter.com/bitesbargetest1?ref_src=twsrc%5Etfw">Tweets by bitesbargetest1</a> <script async src="https://platform.twitter.com/widgets.js"></script><br>
+<!-- /*			Size of widget	 Light or Dark mode		 Twitter page URL*/ 					 Alt text					Twitter script that enables enbedding*/-->
+<br>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="footer">
+		<h4>Copyright © 2021 | BitesBarge	&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Mille Lacs Lake, MN | Contact Us: <a href="tel:000-000-0000">(000)-000-0000</a> | <a href = "mailto:support@bitesbarge.com">support@bitesbarge.com</h4></p>
+</div>
+</body>
+</html>

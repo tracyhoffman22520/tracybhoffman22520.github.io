@@ -1,0 +1,9 @@
+[01-May-2021 23:35:22 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/customer/www/bitesbarge.com/public_html/fetch_products.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/bitesbarge.com/public_html/fetch_products.php on line 4
+[01-May-2021 23:47:15 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dbobwjmus1dpwv.items' doesn't exist in /home/customer/www/bitesbarge.com/public_html/fetch_products.php:4
+Stack trace:
+#0 /home/customer/www/bitesbarge.com/public_html/fetch_products.php(4): PDO->query('SELECT * FROM i...')
+#1 {main}
+  thrown in /home/customer/www/bitesbarge.com/public_html/fetch_products.php on line 4
